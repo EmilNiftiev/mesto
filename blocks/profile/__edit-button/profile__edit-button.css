@@ -10,6 +10,12 @@
   margin-top: 3px;
   grid-column: 2;
   align-self: center;
+  transition: 0.5s ease;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 @media (max-width: 425px) {

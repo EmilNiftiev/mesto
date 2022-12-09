@@ -1,0 +1,12 @@
+.pop-up__container {
+  align-self: center;
+  justify-content: center;
+  background: #fff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 34px 36px 37px;
+  box-sizing: border-box;
+}
