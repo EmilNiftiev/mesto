@@ -8,10 +8,17 @@
   flex-direction: row;
 }
 
+@media (max-width: 930px) {
+  .profile {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
 @media (max-width: 425px) {
   .profile {
     flex-direction: column;
-    padding-bottom: 36px;
+    padding: 0 0 36px 0;
     align-items: center;
   }
 }

@@ -8,10 +8,15 @@
   box-sizing: border-box;
 }
 
+@media (max-width: 930px) {
+  .header {
+    padding-left: 27px;
+  }
+}
+
 @media (max-width: 425px) {
   .header {
     padding-bottom: 31.6px;
-    padding-left: 27px;
     margin: 28px auto 38.25px;
   }
 }
