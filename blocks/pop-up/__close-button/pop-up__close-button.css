@@ -4,6 +4,9 @@
   right: -40px;
   padding: 0;
   background: url(../../../images/pop-up-close-icon.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
   width: 32px;
   height: 32px;
   border: none;
@@ -13,4 +16,13 @@
 .pop-up__close-button:hover {
   opacity: 0.6;
   cursor: pointer;
+}
+
+@media (max-width: 425px) {
+  .pop-up__close-button {
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: -32px;
+  }
 }

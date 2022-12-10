@@ -11,9 +11,19 @@
   height: 50px;
   display: block;
   transition: 0.5s ease;
+  margin: 0 auto;
 }
 
 .pop-up__save-button:hover {
   opacity: 0.8;
   cursor: pointer;
+}
+
+@media (max-width: 425px) {
+  .pop-up__save-button {
+    font-size: 14px;
+    line-height: 17px;
+    width: 238px;
+    height: 46px;
+  }
 }

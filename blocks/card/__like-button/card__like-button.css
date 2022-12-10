@@ -7,6 +7,7 @@
   background-repeat: no-repeat;
   border: none;
   transition: 0.5s ease;
+  margin: 5px 5px 0 0;
 }
 
 .card__like-button:hover {

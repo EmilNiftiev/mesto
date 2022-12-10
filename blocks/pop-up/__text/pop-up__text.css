@@ -17,3 +17,13 @@
 .pop-up__text:last-of-type {
   margin-bottom: 49px;
 }
+
+@media (max-width: 425px) {
+  .pop-up__text {
+    margin-bottom: 30px;
+  }
+
+  .pop-up__text:last-of-type {
+    margin-bottom: 45px;
+  }
+}
