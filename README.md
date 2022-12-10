@@ -22,7 +22,7 @@
 
 ##### Ссылка на страницу проекта:
 
-- [**Ссылка на проект на Github-pages**](https://emilniftiev.github.io/russian-travel).
+- [**Ссылка на проект на Github-pages**](https://emilniftiev.github.io/mesto/).
 
 ##### Планы по доработке текущего проекта:
 
