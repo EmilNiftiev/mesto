@@ -1,7 +1,6 @@
 .card__option {
   display: flex;
-  margin: 25px 15px 31px 21px;
+  margin: 25px 15px 26px 21px;
   justify-content: space-between;
   align-items: center;
-  height: 23px;
 }

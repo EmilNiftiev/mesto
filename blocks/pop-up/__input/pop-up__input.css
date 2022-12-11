@@ -1,4 +1,4 @@
-.pop-up__text {
+.pop-up__input {
   width: 100%;
   font-size: 14px;
   line-height: 17px;
@@ -14,16 +14,16 @@
   box-sizing: border-box;
 }
 
-.pop-up__text:last-of-type {
+.pop-up__input:last-of-type {
   margin-bottom: 49px;
 }
 
 @media (max-width: 425px) {
-  .pop-up__text {
+  .pop-up__input {
     margin-bottom: 30px;
   }
 
-  .pop-up__text:last-of-type {
+  .pop-up__input:last-of-type {
     margin-bottom: 45px;
   }
 }
