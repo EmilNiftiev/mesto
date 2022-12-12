@@ -5,6 +5,12 @@
   box-sizing: border-box;
 }
 
+@media (max-width: 930px) {
+  .footer {
+    padding-left: 27px;
+  }
+}
+
 @media (max-width: 425px) {
   .footer {
     padding: 48px 0 36px;

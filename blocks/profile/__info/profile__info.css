@@ -19,7 +19,7 @@
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 614px) {
   .profile__info {
     max-width: 241.25px;
     gap: 7px 10px;

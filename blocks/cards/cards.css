@@ -7,8 +7,16 @@
   gap: 20px 17px;
 }
 
+@media (max-width: 910px) {
+  .cards {
+    padding: 0 17px;
+    box-sizing: border-box;
+  }
+}
+
 @media (max-width: 425px) {
   .cards {
-    width: calc(100% - 38px);
+    padding: 0;
+    max-width: calc(100% - 38px);
   }
 }
