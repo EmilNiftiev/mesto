@@ -4,10 +4,11 @@ let nameInput = document.querySelector(".pop-up__input_type_name");
 let jobInput = document.querySelector(".pop-up__input_type_job");
 let profileName = document.querySelector(".profile__name");
 let profileJob = document.querySelector(".profile__job");
+let editButton = document.querySelector(".profile__edit-button");
+let closeButton = document.querySelector(".pop-up__close-button");
 
 // Открыть pop-up
 
-let editButton = document.querySelector(".profile__edit-button");
 editButton.addEventListener("click", function () {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
@@ -17,7 +18,6 @@ editButton.addEventListener("click", function () {
 
 // Закрыть pop-up
 
-let closeButton = document.querySelector(".pop-up__close-button");
 function closeForm() {
   popup.classList.remove("pop-up_opened");
 }
