@@ -35,102 +35,13 @@
       </section>
       <section class="cards-area">
         <ul class="cards">
-          <li class="card">
-            <img
-              src="./images/card-karachaevsk.jpg"
-              alt="Карачаевск"
-              class="card__image"
-            />
-            <div class="card__option">
-              <h2 class="card__title">Карачаевск</h2>
-              <button
-                class="card__like-button card__like-button_active"
-                type="button"
-                aria-label="поставить или убрать лайк"
-              ></button>
-            </div>
-          </li>
-          <li class="card">
-            <img
-              src="./images/card-elbrus.jpg"
-              alt="Карачаевск"
-              class="card__image"
-            />
-            <div class="card__option">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button
-                class="card__like-button card__like-button_active"
-                type="button"
-                aria-label="поставить или убрать лайк"
-              ></button>
-            </div>
-          </li>
-          <li class="card">
-            <img
-              src="./images/card-dombay.jpg"
-              alt="Карачаевск"
-              class="card__image"
-            />
-            <div class="card__option">
-              <h2 class="card__title">Домбай</h2>
-              <button
-                class="card__like-button card__like-button_active"
-                type="button"
-                aria-label="поставить или убрать лайк"
-              ></button>
-            </div>
-          </li>
-          <li class="card">
-            <img
-              src="./images/card-elbrus.jpg"
-              alt="Карачаевск"
-              class="card__image"
-            />
-            <div class="card__option">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button
-                class="card__like-button card__like-button_active"
-                type="button"
-                aria-label="поставить или убрать лайк"
-              ></button>
-            </div>
-          </li>
-          <li class="card">
-            <img
-              src="./images/card-dombay.jpg"
-              alt="Карачаевск"
-              class="card__image"
-            />
-            <div class="card__option">
-              <h2 class="card__title">Домбай</h2>
-              <button
-                class="card__like-button card__like-button_active"
-                type="button"
-                aria-label="поставить или убрать лайк"
-              ></button>
-            </div>
-          </li>
-          <li class="card">
-            <img
-              src="./images/card-karachaevsk.jpg"
-              alt="Карачаевск"
-              class="card__image"
-            />
-            <div class="card__option">
-              <h2 class="card__title">Карачаево-Черкесия</h2>
-              <button
-                class="card__like-button card__like-button_active"
-                type="button"
-                aria-label="поставить или убрать лайк"
-              ></button>
-            </div>
-          </li>
+          <li class="card"></li>
         </ul>
       </section>
       <footer class="footer">
         <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
       </footer>
-      <div class="pop-up">
+      <div class="pop-up pop-up_type_edit-profile">
         <div class="pop-up__container">
           <h3 class="pop-up__title">Редактировать профиль</h3>
           <form class="pop-up__form" name="about-person">
@@ -162,7 +73,73 @@
           ></button>
         </div>
       </div>
+      <div class="pop-up pop-up_type_new-image">
+        <div class="pop-up__container">
+          <h3 class="pop-up__title">Новое место</h3>
+          <form class="pop-up__form" name="about-person">
+            <input
+              type="text"
+              class="pop-up__input pop-up__input_type_card-name"
+              placeholder="Название"
+              name="card-name"
+            />
+            <input
+              type="text"
+              class="pop-up__input pop-up__input_type_image-link"
+              placeholder="Ссылка на картинку"
+              name="image-link"
+            />
+            <button
+              class="pop-up__save-button"
+              type="submit"
+              title="Создать новую карточку и выйти"
+            >
+              Создать
+            </button>
+          </form>
+          <button
+            class="pop-up__close-button"
+            aria-label="Закрыть форму добавления карточки"
+            title="Закрыть форму без сохранения"
+            type="button"
+          ></button>
+        </div>
+      </div>
+      <!-- <div class="pop-up pop-up_type_full-screen-image">
+        <div class="pop-up__container">
+          <figure>
+            <img src="" alt="">
+            <figcaption></figcaption>
+          </figure>
+          <button
+            class="pop-up__close-button"
+            aria-label="Закрыть окно"
+            title="Закрыть окно"
+            type="button"
+          ></button>
+        </div>
+      </div> -->
     </div>
+    <template id="place">
+      <ul class="cards">
+        <li class="card">
+          <img src="#" alt="alt" class="card__image" />
+          <button
+            class="card__trash-button"
+            type="button"
+            aria-label="удалить карточку"
+          ></button>
+          <div class="card__option">
+            <h2 class="card__title"></h2>
+            <button
+              class="card__like-button card__like-button_active"
+              type="button"
+              aria-label="поставить или убрать лайк"
+            ></button>
+          </div>
+        </li>
+      </ul>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
