@@ -1,4 +1,5 @@
 .pop-up__scale-image {
+  background: #000;
   display: block;
   max-width: 75vw;
   max-height: 75vh;

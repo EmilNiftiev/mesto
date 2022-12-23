@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./pages/index.css" />
+    <script src="./scripts/constants.js" defer></script>
+    <script src="./scripts/index.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Эмиль Нифтиев" />
     <title>Проект "Место"</title>
@@ -48,12 +50,14 @@
               class="pop-up__input pop-up__input_type_name"
               placeholder="Введите Ваше имя"
               name="person-name"
+              required
             />
             <input
               type="text"
               class="pop-up__input pop-up__input_type_job"
               placeholder="Ваш род деятельности"
               name="person-job"
+              required
             />
             <button
               class="pop-up__save-button"
@@ -74,18 +78,23 @@
       <div class="pop-up pop-up_type_new-image">
         <div class="pop-up__container">
           <h3 class="pop-up__title">Новое место</h3>
-          <form class="pop-up__form pop-up__form_type_new-image" name="about-person">
+          <form
+            class="pop-up__form pop-up__form_type_new-image"
+            name="about-person"
+          >
             <input
               type="text"
               class="pop-up__input pop-up__input_type_card-name"
               placeholder="Название"
               name="card-name"
+              required
             />
             <input
-              type="text"
+              type="url"
               class="pop-up__input pop-up__input_type_image-link"
               placeholder="Ссылка на картинку"
               name="image-link"
+              required
             />
             <button
               class="pop-up__save-button pop-up__save-button_type_new-image"
@@ -106,11 +115,7 @@
       <div class="pop-up pop-up_dark-background pop-up_type_full-screen-image">
         <div class="pop-up__image-container">
           <figure class="pop-up__figure">
-            <img
-              src="./images/card-karachaevsk.jpg"
-              alt="alt"
-              class="pop-up__scale-image"
-            />
+            <img src="#" alt="alt" class="pop-up__scale-image" />
             <figcaption class="pop-up__image-description"></figcaption>
           </figure>
           <button
@@ -140,6 +145,5 @@
         </div>
       </li>
     </template>
-    <script src="./scripts/index.js"></script>
   </body>
 </html>
