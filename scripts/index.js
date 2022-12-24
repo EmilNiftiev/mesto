@@ -52,13 +52,13 @@ function closeEditProfile() {
 }
 popupProfileCloseButton.addEventListener("click", closeEditProfile);
 
-function profileHandleFormSubmit(evt) {
+function submitProfileForm(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closeEditProfile();
 }
-profileFormElement.addEventListener("submit", profileHandleFormSubmit);
+profileFormElement.addEventListener("submit", submitProfileForm);
 
 function addImage() {
   openPopup(addImagePopup);
