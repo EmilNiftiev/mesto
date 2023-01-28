@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="./pages/index.css" />
     <script src="./scripts/constants.js" defer></script>
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validate.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Эмиль Нифтиев" />
     <title>Проект "Место"</title>
@@ -44,12 +45,14 @@
       <div class="pop-up pop-up_type_edit-profile">
         <div class="pop-up__container">
           <h3 class="pop-up__title">Редактировать профиль</h3>
-          <form class="pop-up__form" name="about-person">
+          <form class="form pop-up__form" name="about-person">
             <input
               type="text"
               class="pop-up__input pop-up__input_type_name"
               placeholder="Введите Ваше имя"
               name="person-name"
+              minlength="2"
+              maxlength="40"
               required
             />
             <input
@@ -57,6 +60,8 @@
               class="pop-up__input pop-up__input_type_job"
               placeholder="Ваш род деятельности"
               name="person-job"
+              minlength="2"
+              maxlength="200"
               required
             />
             <button
@@ -79,7 +84,7 @@
         <div class="pop-up__container">
           <h3 class="pop-up__title">Новое место</h3>
           <form
-            class="pop-up__form pop-up__form_type_new-image"
+            class="form pop-up__form pop-up__form_type_new-image"
             name="about-person"
           >
             <input
@@ -87,6 +92,8 @@
               class="pop-up__input pop-up__input_type_card-name"
               placeholder="Название"
               name="card-name"
+              minlength="2"
+              maxlength="30"
               required
             />
             <input

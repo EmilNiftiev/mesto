@@ -32,11 +32,29 @@ const placesTemplate = document
   .querySelector("#place")
   .content.querySelector(".card");
 
+// Закрытие по кнопке ESC
+function closeByEsc(evt) {
+  evt.preventDefault();
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".pop-up_opened");
+    closePopup(openedPopup);
+  }
+}
+
+// Закрытие через оверлей
+function closeByOverlay(evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.currentTarget);
+  }
+}
+
 function openPopup(popup) {
+  document.addEventListener("keyup", closeByEsc);
   popup.classList.add("pop-up_opened");
 }
 
 function closePopup(popup) {
+  document.removeEventListener("keyup", closeByEsc);
   popup.classList.remove("pop-up_opened");
 }
 
@@ -46,11 +64,6 @@ function editProfile() {
   jobInput.value = profileJob.textContent;
 }
 editButton.addEventListener("click", editProfile);
-
-function closeEditProfile() {
-  closePopup(profilePopup);
-}
-popupProfileCloseButton.addEventListener("click", closeEditProfile);
 
 function submitProfileForm(evt) {
   evt.preventDefault();
@@ -65,11 +78,6 @@ function addImage() {
   newCardForm.reset();
 }
 addNewImageButton.addEventListener("click", addImage);
-
-function closeAddImagePopup() {
-  closePopup(addImagePopup);
-}
-closeButtonInNewImagePopup.addEventListener("click", closeAddImagePopup);
 
 function createCard(element) {
   const card = placesTemplate.cloneNode(true);
@@ -94,11 +102,6 @@ function scaleImage(name, link) {
   openPopup(fullScreenPopup);
 }
 
-function closeScaleImagePopup() {
-  closePopup(fullScreenPopup);
-}
-closeButtonFullScreenPopup.addEventListener("click", closeScaleImagePopup);
-
 function saveNewCard() {
   const newCard = {
     name: imageNameInput.value,
@@ -107,6 +110,7 @@ function saveNewCard() {
   const cardToAdd = createCard(newCard);
   cardsArea.prepend(cardToAdd);
 }
+
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   saveNewCard();
@@ -127,3 +131,18 @@ function deleteCard(evt) {
 initialCards.forEach(function (item) {
   cardsArea.prepend(createCard(item));
 });
+
+// Слушатели
+popupProfileCloseButton.addEventListener("click", () =>
+  closePopup(profilePopup)
+);
+closeButtonFullScreenPopup.addEventListener("click", () =>
+  closePopup(fullScreenPopup)
+);
+closeButtonInNewImagePopup.addEventListener("click", () =>
+  closePopup(addImagePopup)
+);
+
+profilePopup.addEventListener("click", closeByOverlay);
+addImagePopup.addEventListener("click", closeByOverlay);
+fullScreenPopup.addEventListener("click", closeByOverlay);
