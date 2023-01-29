@@ -23,6 +23,9 @@
 @import url(../blocks/pop-up/__scale-image/pop-up__scale-image.css);
 @import url(../blocks/pop-up/__figure/pop-up__figure.css);
 @import url(../blocks/pop-up/__image-description/pop-up__image-description.css);
+@import url(../blocks/pop-up/__input-error/pop-up__input-error.css);
+@import url(../blocks/pop-up/__input-error/_active/pop-up__input-error_active.css);
+@import url(../blocks/pop-up/__input/_type_error/pop-up__input_type_error.css);
 @import url(../blocks/cards-area/cards-area.css);
 @import url(../blocks/cards/cards.css);
 @import url(../blocks/card/card.css);

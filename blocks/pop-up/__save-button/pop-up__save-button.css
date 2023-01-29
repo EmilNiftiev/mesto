@@ -4,7 +4,7 @@
   font-size: 18px;
   line-height: 22px;
   text-align: center;
-  color: #ffffff;
+  color: #fff;
   border-color: #000;
   border-radius: 2px;
   box-sizing: border-box;
@@ -13,6 +13,7 @@
   display: block;
   transition: 0.5s ease;
   margin: 0 auto;
+  margin-top: 18px;
 }
 
 .pop-up__save-button:hover {
@@ -20,11 +21,19 @@
   cursor: pointer;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 460px) {
   .pop-up__save-button {
     font-size: 14px;
     line-height: 17px;
     width: 238px;
     height: 46px;
   }
+}
+
+.pop-up__save-button:disabled {
+  border: 1px solid;
+  color: #000;
+  background-color: #e5e5e5;
+  cursor: auto;
+  opacity: 0.2;
 }

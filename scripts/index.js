@@ -1,4 +1,5 @@
 const profilePopup = document.querySelector(".pop-up_type_edit-profile");
+const profileSaveButon = document.querySelector(".pop-up__save-button");
 const profileFormElement = profilePopup.querySelector(".pop-up__form");
 const popupProfileCloseButton = profilePopup.querySelector(
   ".pop-up__close-button"
@@ -10,6 +11,9 @@ const profileJob = document.querySelector(".profile__job");
 const editButton = document.querySelector(".profile__edit-button");
 const addNewImageButton = document.querySelector(".profile__add-button");
 const addImagePopup = document.querySelector(".pop-up_type_new-image");
+const saveNewCardButton = document.querySelector(
+  ".pop-up__save-button_type_new-image"
+);
 const closeButtonInNewImagePopup = addImagePopup.querySelector(
   ".pop-up__close-button"
 );
@@ -58,26 +62,38 @@ function closePopup(popup) {
   popup.classList.remove("pop-up_opened");
 }
 
-function editProfile() {
+// function editProfile() {
+//   nameInput.value = profileName.textContent;
+//   jobInput.value = profileJob.textContent;
+//   openPopup(profilePopup);
+// }
+// editButton.addEventListener("click", editProfile);
+editButton.addEventListener("click", function () {
   openPopup(profilePopup);
+  resetValidation(profileFormElement, validationSet);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-}
-editButton.addEventListener("click", editProfile);
+  profileSaveButon.setAttribute("disabled", true);
+});
 
 function submitProfileForm(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closeEditProfile();
+  closePopup(profilePopup);
 }
-profileFormElement.addEventListener("submit", submitProfileForm);
 
-function addImage() {
-  openPopup(addImagePopup);
+// function addImage() {
+//   newCardForm.reset();
+//   openPopup(addImagePopup);
+// }
+// addNewImageButton.addEventListener("click", addImage);
+addNewImageButton.addEventListener("click", function () {
   newCardForm.reset();
-}
-addNewImageButton.addEventListener("click", addImage);
+  resetValidation(newCardForm, validationSet);
+  openPopup(addImagePopup);
+  saveNewCardButton.setAttribute("disabled", true);
+});
 
 function createCard(element) {
   const card = placesTemplate.cloneNode(true);
@@ -117,8 +133,6 @@ function handleAddCardSubmit(evt) {
   closePopup(addImagePopup);
 }
 
-newCardForm.addEventListener("submit", (evt) => handleAddCardSubmit(evt));
-
 function setCardLike(evt) {
   evt.target.classList.toggle("card__like-button_active");
 }
@@ -142,7 +156,8 @@ closeButtonFullScreenPopup.addEventListener("click", () =>
 closeButtonInNewImagePopup.addEventListener("click", () =>
   closePopup(addImagePopup)
 );
-
+profileFormElement.addEventListener("submit", submitProfileForm);
+newCardForm.addEventListener("submit", (evt) => handleAddCardSubmit(evt));
 profilePopup.addEventListener("click", closeByOverlay);
 addImagePopup.addEventListener("click", closeByOverlay);
 fullScreenPopup.addEventListener("click", closeByOverlay);
