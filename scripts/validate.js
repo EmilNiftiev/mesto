@@ -22,11 +22,11 @@ const hideInputError = (form, input, set) => {
 };
 
 // Функция проверки валидности
-const checkInputValidity = (form, input) => {
+const checkInputValidity = (form, input, set) => {
   if (!input.validity.valid) {
-    showInputError(form, input, validationSet);
+    showInputError(form, input, set);
   } else {
-    hideInputError(form, input, validationSet);
+    hideInputError(form, input, set);
   }
 };
 
@@ -36,7 +36,7 @@ const setEventListeners = (form, set) => {
   const submitButton = form.querySelector(set.submitButtonSelector);
   inputList.forEach((input) => {
     input.addEventListener("input", function () {
-      checkInputValidity(form, input);
+      checkInputValidity(form, input, set);
       toggleButtonState(inputList, submitButton);
     });
   });
@@ -54,16 +54,14 @@ function enableValidation(set) {
 enableValidation(validationSet);
 
 // Сброс ошибок при повторном открытии
-
 function resetValidation(form, set) {
   const inputList = Array.from(form.querySelectorAll(set.inputSelector));
   inputList.forEach(function (input) {
-    hideInputError(form, input, validationSet);
+    hideInputError(form, input, set);
   });
 }
 
 // Состояние кнопки
-
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;

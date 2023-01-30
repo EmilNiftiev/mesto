@@ -1,9 +1,7 @@
+const popups = document.querySelectorAll(".pop-up");
 const profilePopup = document.querySelector(".pop-up_type_edit-profile");
 const profileSaveButon = document.querySelector(".pop-up__save-button");
 const profileFormElement = profilePopup.querySelector(".pop-up__form");
-const popupProfileCloseButton = profilePopup.querySelector(
-  ".pop-up__close-button"
-);
 const nameInput = document.querySelector(".pop-up__input_type_name");
 const jobInput = document.querySelector(".pop-up__input_type_job");
 const profileName = document.querySelector(".profile__name");
@@ -14,9 +12,6 @@ const addImagePopup = document.querySelector(".pop-up_type_new-image");
 const saveNewCardButton = document.querySelector(
   ".pop-up__save-button_type_new-image"
 );
-const closeButtonInNewImagePopup = addImagePopup.querySelector(
-  ".pop-up__close-button"
-);
 const imageNameInput = document.querySelector(".pop-up__input_type_card-name");
 const imageLinkInput = document.querySelector(".pop-up__input_type_image-link");
 const card = document.querySelector(".card");
@@ -24,9 +19,6 @@ const cardsArea = document.querySelector(".cards");
 const newCardForm = document.querySelector(".pop-up__form_type_new-image");
 const fullScreenPopup = document.querySelector(
   ".pop-up_type_full-screen-image"
-);
-const closeButtonFullScreenPopup = fullScreenPopup.querySelector(
-  ".pop-up__close-button"
 );
 const imagePopup = fullScreenPopup.querySelector(".pop-up__scale-image");
 const imageDescription = fullScreenPopup.querySelector(
@@ -45,12 +37,23 @@ function closeByEsc(evt) {
   }
 }
 
-// Закрытие через оверлей
-function closeByOverlay(evt) {
-  if (evt.target === evt.currentTarget) {
-    closePopup(evt.currentTarget);
-  }
-}
+// Универсальный способ закрытия попапов
+popups.forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("pop-up_opened")) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains("pop-up__close-button")) {
+      closePopup(popup);
+    }
+  });
+});
+
+/* Я написал это в отзыве, но продублирую и сюда, ибо не знаю,
+доступны ли Вам наши отзывы для просмотра) Спасибо большое за эту подсказку!
+Действительно, это позволяет избавиться от большого количества лишнего кода и
+длиннючих названий переменных) Буду иметь ввиду на будущее)
+Добра Вам и удачи! :))) */
 
 function openPopup(popup) {
   document.addEventListener("keyup", closeByEsc);
@@ -62,12 +65,6 @@ function closePopup(popup) {
   popup.classList.remove("pop-up_opened");
 }
 
-// function editProfile() {
-//   nameInput.value = profileName.textContent;
-//   jobInput.value = profileJob.textContent;
-//   openPopup(profilePopup);
-// }
-// editButton.addEventListener("click", editProfile);
 editButton.addEventListener("click", function () {
   openPopup(profilePopup);
   resetValidation(profileFormElement, validationSet);
@@ -83,11 +80,6 @@ function submitProfileForm(evt) {
   closePopup(profilePopup);
 }
 
-// function addImage() {
-//   newCardForm.reset();
-//   openPopup(addImagePopup);
-// }
-// addNewImageButton.addEventListener("click", addImage);
 addNewImageButton.addEventListener("click", function () {
   newCardForm.reset();
   resetValidation(newCardForm, validationSet);
@@ -103,8 +95,8 @@ function createCard(element) {
   cardImage.alt = imageNameInput.value;
   cardImage.src = element.link;
   card.querySelector(".card__title").textContent = element.name;
-  trashButton.addEventListener("click", (evt) => deleteCard(evt));
-  likeButton.addEventListener("click", (evt) => setCardLike(evt));
+  trashButton.addEventListener("click", deleteCard);
+  likeButton.addEventListener("click", setCardLike);
   cardImage.addEventListener("click", () =>
     scaleImage(element.name, element.link)
   );
@@ -147,17 +139,5 @@ initialCards.forEach(function (item) {
 });
 
 // Слушатели
-popupProfileCloseButton.addEventListener("click", () =>
-  closePopup(profilePopup)
-);
-closeButtonFullScreenPopup.addEventListener("click", () =>
-  closePopup(fullScreenPopup)
-);
-closeButtonInNewImagePopup.addEventListener("click", () =>
-  closePopup(addImagePopup)
-);
 profileFormElement.addEventListener("submit", submitProfileForm);
-newCardForm.addEventListener("submit", (evt) => handleAddCardSubmit(evt));
-profilePopup.addEventListener("click", closeByOverlay);
-addImagePopup.addEventListener("click", closeByOverlay);
-fullScreenPopup.addEventListener("click", closeByOverlay);
+newCardForm.addEventListener("submit", handleAddCardSubmit);
