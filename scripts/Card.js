@@ -15,13 +15,12 @@ export default class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
-    this._errorCard = this._element.querySelector(".card__image");
     this._cardImage = this._element.querySelector(".card__image");
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
-    this._errorCard.onerror = () => {
-      this._errorCard.src = "./images/imageError.png";
+    this._cardImage.onerror = () => {
+      this._cardImage.src = "./images/imageError.png";
       this._link = "./images/imageError.png";
     };
 
