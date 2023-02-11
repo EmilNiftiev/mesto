@@ -64,7 +64,7 @@ function closePopup(popup) {
 
 editButton.addEventListener("click", function () {
   openPopup(profilePopup);
-  profileValidator._resetValidation();
+  profileValidator.resetValidation();
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   profileSaveButon.setAttribute("disabled", true);
@@ -79,7 +79,7 @@ function submitProfileForm(evt) {
 
 addNewImageButton.addEventListener("click", function () {
   newCardForm.reset();
-  newCardValidator._resetValidation();
+  newCardValidator.resetValidation();
   openPopup(addImagePopup);
   saveNewCardButton.setAttribute("disabled", true);
 });

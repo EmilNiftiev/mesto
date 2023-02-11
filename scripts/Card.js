@@ -16,8 +16,9 @@ export default class Card {
     this._element = this._getTemplate();
     this._setEventListeners();
     this._errorCard = this._element.querySelector(".card__image");
-    this._element.querySelector(".card__image").src = this._link;
-    this._element.querySelector(".card__image").alt = this._name;
+    this._cardImage = this._element.querySelector(".card__image");
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
     this._errorCard.onerror = () => {
       this._errorCard.src = "./images/imageError.png";
