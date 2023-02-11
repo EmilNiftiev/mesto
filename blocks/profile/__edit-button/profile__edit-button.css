@@ -13,6 +13,7 @@
   align-self: center;
   transition: 0.5s ease;
   cursor: pointer;
+  margin-right: 20px;
 }
 
 .profile__edit-button:hover {
@@ -21,6 +22,7 @@
 
 @media (max-width: 614px) {
   .profile__edit-button {
+    margin-right: 0;
     width: 18px;
     height: 18px;
   }

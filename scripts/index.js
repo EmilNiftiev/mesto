@@ -1,3 +1,7 @@
+import { initialCards, validationSet } from "./constants.js";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
 const popups = document.querySelectorAll(".pop-up");
 const profilePopup = document.querySelector(".pop-up_type_edit-profile");
 const profileSaveButon = document.querySelector(".pop-up__save-button");
@@ -14,7 +18,6 @@ const saveNewCardButton = document.querySelector(
 );
 const imageNameInput = document.querySelector(".pop-up__input_type_card-name");
 const imageLinkInput = document.querySelector(".pop-up__input_type_image-link");
-const card = document.querySelector(".card");
 const cardsArea = document.querySelector(".cards");
 const newCardForm = document.querySelector(".pop-up__form_type_new-image");
 const fullScreenPopup = document.querySelector(
@@ -24,9 +27,9 @@ const imagePopup = fullScreenPopup.querySelector(".pop-up__scale-image");
 const imageDescription = fullScreenPopup.querySelector(
   ".pop-up__image-description"
 );
-const placesTemplate = document
-  .querySelector("#place")
-  .content.querySelector(".card");
+
+const profileValidator = new FormValidator(validationSet, profileFormElement);
+const newCardValidator = new FormValidator(validationSet, newCardForm);
 
 // Закрытие по кнопке ESC
 function closeByEsc(evt) {
@@ -49,12 +52,6 @@ popups.forEach((popup) => {
   });
 });
 
-/* Я написал это в отзыве, но продублирую и сюда, ибо не знаю,
-доступны ли Вам наши отзывы для просмотра) Спасибо большое за эту подсказку!
-Действительно, это позволяет избавиться от большого количества лишнего кода и
-длиннючих названий переменных) Буду иметь ввиду на будущее)
-Добра Вам и удачи! :))) */
-
 function openPopup(popup) {
   document.addEventListener("keyup", closeByEsc);
   popup.classList.add("pop-up_opened");
@@ -67,7 +64,7 @@ function closePopup(popup) {
 
 editButton.addEventListener("click", function () {
   openPopup(profilePopup);
-  resetValidation(profileFormElement, validationSet);
+  profileValidator._resetValidation();
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   profileSaveButon.setAttribute("disabled", true);
@@ -82,33 +79,10 @@ function submitProfileForm(evt) {
 
 addNewImageButton.addEventListener("click", function () {
   newCardForm.reset();
-  resetValidation(newCardForm, validationSet);
+  newCardValidator._resetValidation();
   openPopup(addImagePopup);
   saveNewCardButton.setAttribute("disabled", true);
 });
-
-function createCard(element) {
-  const card = placesTemplate.cloneNode(true);
-  const trashButton = card.querySelector(".card__trash-button");
-  const likeButton = card.querySelector(".card__like-button");
-  const cardImage = card.querySelector(".card__image");
-  cardImage.alt = imageNameInput.value;
-  cardImage.src = element.link;
-  card.querySelector(".card__title").textContent = element.name;
-  trashButton.addEventListener("click", deleteCard);
-  likeButton.addEventListener("click", setCardLike);
-  cardImage.addEventListener("click", () =>
-    scaleImage(element.name, element.link)
-  );
-  return card;
-}
-
-function scaleImage(name, link) {
-  imagePopup.src = link;
-  imagePopup.alt = name;
-  imageDescription.textContent = name;
-  openPopup(fullScreenPopup);
-}
 
 function saveNewCard() {
   const newCard = {
@@ -125,18 +99,35 @@ function handleAddCardSubmit(evt) {
   closePopup(addImagePopup);
 }
 
-function setCardLike(evt) {
-  evt.target.classList.toggle("card__like-button_active");
+////////////////////////////////////////////////////////////////////////////////////////
+
+function scaleImage(name, link) {
+  imagePopup.src = link;
+  imagePopup.alt = name;
+  imageDescription.textContent = name;
+  openPopup(fullScreenPopup);
 }
 
-function deleteCard(evt) {
-  const deleteCard = evt.target.closest(".card");
-  deleteCard.remove();
+function createCard(item) {
+  const newCard = new Card(item, "#place", scaleImage);
+  return newCard.generateCard();
 }
 
-initialCards.forEach(function (item) {
-  cardsArea.prepend(createCard(item));
+initialCards.forEach((item) => {
+  const card = new Card(item, "#place", scaleImage);
+  const cardElement = card.generateCard();
+  document.querySelector(".cards").prepend(cardElement);
 });
+
+function enableFormsValidation(settings) {
+  const forms = Array.from(document.querySelectorAll(".pop-up__form"));
+  forms.forEach((form) => {
+    const newValidator = new FormValidator(settings, form);
+    newValidator.enableValidation();
+  });
+}
+
+enableFormsValidation(validationSet);
 
 // Слушатели
 profileFormElement.addEventListener("submit", submitProfileForm);
