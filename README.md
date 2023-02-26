@@ -3,7 +3,7 @@
 ## «Базовый JavaScript, адаптивная вёрстка и работа с макетом, карточки и попапы»
 
 Данная работа представляет собой адаптинвый одностраничный сайт, при оформлении которого были  
-использованы [**"медиазапросы"**](https://developer.mozilla.org/ru/docs/Web/CSS/Media_Queries/Using_media_queries), задействованы базовые функции и методы вёрстки, спобоб построения сетки с помощью [**"Grid Layout"**](https://developer.mozilla.org/ru/docs/Web/CSS/CSS_Grid_Layout), применена методология [**"БЭМ"**](https://ru.bem.info/methodology/quick-start/), соблюдена [_семантика заголовков_](https://htmlacademy.ru/blog/html/semantics), применен подход объектно-ориентированного программирования [**(ООП)**](https://developer.mozilla.org/ru/docs/Glossary/OOP), а также реализована файловая структура по методу [**"Nested"**](https://ru.bem.info/methodology/filestructure/#nested).
+использованы [**"медиазапросы"**](https://developer.mozilla.org/ru/docs/Web/CSS/Media_Queries/Using_media_queries), задействованы базовые функции и методы вёрстки, спобоб построения сетки с помощью [**"Grid Layout"**](https://developer.mozilla.org/ru/docs/Web/CSS/CSS_Grid_Layout), применена методология [**"БЭМ"**](https://ru.bem.info/methodology/quick-start/), соблюдена [_семантика заголовков_](https://htmlacademy.ru/blog/html/semantics), применен подход объектно-ориентированного программирования [**(ООП)**](https://developer.mozilla.org/ru/docs/Glossary/OOP), а также реализована файловая структура по методу [**"Nested"**](https://ru.bem.info/methodology/filestructure/#nested). Реализована сборка кода с помощью Webpack, что позволяет пользоваться всеми современными инструментами языка и не беспокоиться о поддержке сайта старыми браузерами.
 
 ##### Основные разделы, применяемые в работе:
 
@@ -21,6 +21,7 @@
   - Создание, добавление и удаление элементов в DOM.
   - Работа с классами.
   - Модули и их подключение.
+- Сборка проекта с помощью Webpack.
 
 ##### Языки программирования, использумые при создании работы:
 
@@ -34,6 +35,13 @@
 - [**Ссылка на макет в Figma**](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1).
 
 ##### Обновления:
+
+###### 26.02.2023 г:
+
+- refactor:
+
+1. Классы разделены на отдельные файлы, каждый класс отвечает за свою отдельную задачу, настроена связь между ними.
+2. Проект собран с помощью Webpack.
 
 ###### 11.02.2023 г:
 

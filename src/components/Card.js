@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(data, templateSelector, scaleImage) {
-    this._link = data.link;
-    this._name = data.name;
+  constructor(name, link, templateSelector, handleCardClick) {
+    this._link = link;
+    this._name = name;
     this._templateSelector = templateSelector;
-    this._scaleImage = scaleImage;
+    this._handleCardClick = handleCardClick;
   }
   _getTemplate() {
     const cardElement = document
@@ -35,9 +35,9 @@ export default class Card {
       .addEventListener("click", this._setCardLike.bind(this));
     this._element
       .querySelector(".card__image")
-      .addEventListener("click", () =>
-        this._scaleImage(this._name, this._link)
-      );
+      .addEventListener("click", () => {
+        this._handleCardClick(this._name, this._link);
+      });
   }
 
   _deleteCard() {
