@@ -1,11 +1,11 @@
-import { initialCards, validationSet } from "./constants/constants.js";
-import Card from "./components/Card.js";
-import FormValidator from "./components/FormValidator.js";
-import UserInfo from "./components/UserInfo.js";
-import Section from "./components/Section.js";
-import PopupWithImage from "./components/PopupWithImage.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import "./pages/index.css";
+import { initialCards, validationSet } from "../constants/constants.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import UserInfo from "../components/UserInfo.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import "./index.css";
 
 const profilePopup = document.querySelector(".pop-up_type_edit-profile");
 const profileFormElement = profilePopup.querySelector(".pop-up__form");
@@ -67,11 +67,13 @@ function submitProfileForm(data) {
 
 // Слушатели кнопок редактирования и добавления карточек
 editButton.addEventListener("click", () => {
+  profileValidator.toggleButtonState();
   profileValidator.resetValidation();
   editProfilePopup.open();
   handleProfile();
 });
 addNewImageButton.addEventListener("click", () => {
+  newCardValidator.toggleButtonState();
   newCardValidator.resetValidation();
   addImagePopup.open();
 });

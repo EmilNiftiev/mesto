@@ -1,3 +1,4 @@
+import errorImage from "../images/imageError.png";
 export default class Card {
   constructor(name, link, templateSelector, handleCardClick) {
     this._link = link;
@@ -14,16 +15,15 @@ export default class Card {
   }
   generateCard() {
     this._element = this._getTemplate();
-    this._setEventListeners();
     this._cardImage = this._element.querySelector(".card__image");
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
     this._cardImage.onerror = () => {
-      this._cardImage.src = "./images/imageError.png";
-      this._link = "./images/imageError.png";
+      this._cardImage.src = errorImage;
+      this._link = errorImage;
     };
-
+    this._setEventListeners();
     return this._element;
   }
   _setEventListeners() {
@@ -33,11 +33,9 @@ export default class Card {
     this._element
       .querySelector(".card__like-button")
       .addEventListener("click", this._setCardLike.bind(this));
-    this._element
-      .querySelector(".card__image")
-      .addEventListener("click", () => {
-        this._handleCardClick(this._name, this._link);
-      });
+    this._cardImage.addEventListener("click", () => {
+      this._handleCardClick(this._name, this._link);
+    });
   }
 
   _deleteCard() {
