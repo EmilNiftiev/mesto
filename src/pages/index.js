@@ -16,10 +16,13 @@ const addNewImageButton = document.querySelector(".profile__add-button");
 const imageNameInput = document.querySelector(".pop-up__input_type_card-name");
 const imageLinkInput = document.querySelector(".pop-up__input_type_image-link");
 const newCardForm = document.querySelector(".pop-up__form_type_new-image");
+const newAvatarForm = document.querySelector(".pop-up__form_type_new-avatar");
+const avatarEditButton = document.querySelector(".profile__cover");
 
 //////////////////////////////////////////////////////////////////////////
 const profileValidator = new FormValidator(validationSet, profileFormElement);
 const newCardValidator = new FormValidator(validationSet, newCardForm);
+const newAvatarValidator = new FormValidator(validationSet, newAvatarForm);
 
 // Экземпляр попапа для проофиля
 const editProfilePopup = new PopupWithForm(
@@ -28,13 +31,27 @@ const editProfilePopup = new PopupWithForm(
 );
 
 // Экземпляр попапа для добавления карточки
-const addImagePopup = new PopupWithForm(
-  ".pop-up_type_new-image",
-  submitCardForm
-);
+const addImagePopup = new PopupWithForm(".pop-up_type_new-image", submitCardForm);
 
 // Экземпляр попапа для увеличения картинки
 const scaleImagePopup = new PopupWithImage(".pop-up_type_full-screen-image");
+
+// Экземпляр попапа обновления аватара
+const newAvatarPopup = new PopupWithForm(".pop-up_type_new-avatar", (inputUrl) => {
+  // submitBtn.textContent = 'Сохранение...';
+  const [url] = inputUrl;
+  api
+    //________________________________________________________________________________ДОДЕЛАТЬ ТУТ
+    .updateAvatar(url)
+    .then((res) => {
+      profile.setUserInfo(res);
+      newAvatarPopup.close();
+      // submitBtn.textContent = 'Сохраненить';
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 
 // Экземпляр класса Section для добавления карточек
 const cardsArray = new Section(
@@ -51,6 +68,7 @@ const cardsArray = new Section(
 const profile = new UserInfo({
   userNameSelector: ".profile__name",
   userJobSelector: ".profile__job",
+  avatarSelector: ".profile__avatar",
 });
 
 // Заполняем поля формы исходными данными
@@ -64,19 +82,6 @@ function handleProfile() {
 function submitProfileForm(data) {
   profile.setUserInfo(data);
 }
-
-// Слушатели кнопок редактирования и добавления карточек
-editButton.addEventListener("click", () => {
-  profileValidator.toggleButtonState();
-  profileValidator.resetValidation();
-  editProfilePopup.open();
-  handleProfile();
-});
-addNewImageButton.addEventListener("click", () => {
-  newCardValidator.toggleButtonState();
-  newCardValidator.resetValidation();
-  addImagePopup.open();
-});
 
 // Создание карточки
 function createCard(name, link) {
@@ -104,5 +109,21 @@ function handleCardClick(name, link) {
 // Включение валидации
 profileValidator.enableValidation();
 newCardValidator.enableValidation();
+newAvatarValidator.enableValidation();
 
-//////////////////////////////////////////////////////////////////////////
+// Слушатели кнопок
+editButton.addEventListener("click", () => {
+  profileValidator.toggleButtonState();
+  profileValidator.resetValidation();
+  editProfilePopup.open();
+  handleProfile();
+});
+addNewImageButton.addEventListener("click", () => {
+  newCardValidator.toggleButtonState();
+  newCardValidator.resetValidation();
+  addImagePopup.open();
+});
+avatarEditButton.addEventListener("click", () => {
+  newAvatarValidator.resetValidation();
+  newAvatarPopup.open();
+});
