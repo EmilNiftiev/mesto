@@ -1,20 +1,26 @@
 export default class UserInfo {
-  constructor({ userNameSelector, userJobSelector }) {
-    this._userNameSelector = document.querySelector(userNameSelector);
-    this._userJobSelector = document.querySelector(userJobSelector);
+  constructor({ userName, userJob, userAvatar }) {
+    this._userName = document.querySelector(userName);
+    this._userJob = document.querySelector(userJob);
+    this._userAvatar = document.querySelector(userAvatar);
   }
   // метод, который возвращает объект с данными пользователя.
   // Этот метод пригодится когда данные пользователя нужно будет подставить
   // в форму при открытии.
   getUserInfo() {
     return {
-      name: this._userNameSelector.textContent,
-      job: this._userJobSelector.textContent,
+      name: this._userName.textContent,
+      job: this._userJob.textContent,
     };
   }
   // метод, который принимает новые данные пользователя и добавляет их на страницу.
-  setUserInfo({ name, job }) {
-    this._userNameSelector.textContent = name;
-    this._userJobSelector.textContent = job;
+  setUserInfo(user) {
+    this._userName.textContent = user.name;
+    this._userJob.textContent = user.job;
+    this._userAvatar.src = user.avatar;
+    this._user = user;
+  }
+  getUser() {
+    return this._user;
   }
 }

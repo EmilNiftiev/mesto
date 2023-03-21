@@ -11,11 +11,6 @@ export default class Popup {
     }
   }
 
-  /* Сначала я просто добавил в setEventListeners слушатель нажатия мышки,
-    а в коллбэке прописал условие и закрытие.
-    Но, чтобы убрать слушатель после закрытия попапа, решил создать
-    дополнительный метод */
-
   _handleOverlayClose(evt) {
     if (evt.target === evt.currentTarget) {
       this.close();
