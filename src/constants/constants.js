@@ -13,5 +13,5 @@ export const cardSet = {
   cardTitle: ".card__title",
   cardLike: ".card__like-button",
   cardTrash: ".card__trash-button",
-  cardLikeCounter: ".card__trash-button",
+  cardLikeCounter: ".card__like-counter",
 };

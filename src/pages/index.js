@@ -20,9 +20,7 @@ const imageLinkInput = document.querySelector(".pop-up__input_type_image-link");
 const newCardForm = document.querySelector(".pop-up__form_type_new-image");
 const newAvatarForm = document.querySelector(".pop-up__form_type_new-avatar");
 const avatarEditButton = document.querySelector(".profile__cover");
-const submitAvatarBtn = document.querySelector(
-  ".pop-up__save-button_type_new-avatar"
-);
+const submitAvatarBtn = document.querySelector(".pop-up__save-button_type_new-avatar");
 
 //////////////////////////////////////////////////////////////////////////
 const profileValidator = new FormValidator(validationSet, profileFormElement);
@@ -53,63 +51,54 @@ api
   });
 
 // Экземпляр попапа для проофиля
-const editProfilePopup = new PopupWithForm(
-  ".pop-up_type_edit-profile",
-  (inputsValue) => {
-    const [name, job] = inputsValue;
-    api
-      .setUserInfo(name, job)
-      .then((res) => {
-        profile.setUserInfo(res);
-        editProfilePopup.close();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-);
+const editProfilePopup = new PopupWithForm(".pop-up_type_edit-profile", (inputsValue) => {
+  const [name, job] = inputsValue;
+  api
+    .setUserInfo(name, job)
+    .then((res) => {
+      profile.setUserInfo(res);
+      editProfilePopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 // Экземпляр попапа для добавления карточки
-const addImagePopup = new PopupWithForm(
-  ".pop-up_type_new-image",
-  (inputsValue) => {
-    const user = {};
-    [user.name, user.link] = inputsValue;
-    api
-      .createUserInfo(user.name, user.link)
-      .then((card) => {
-        const array = [];
-        array.push(card);
-        cardsArray.renderItems(array);
-        addImagePopup.close();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-);
+const addImagePopup = new PopupWithForm(".pop-up_type_new-image", (inputsValue) => {
+  const user = {};
+  [user.name, user.link] = inputsValue;
+  api
+    .createUserInfo(user.name, user.link)
+    .then((card) => {
+      const array = [];
+      array.push(card);
+      cardsArray.renderItems(array);
+      addImagePopup.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 // Экземпляр попапа для увеличения картинки
 const scaleImagePopup = new PopupWithImage(".pop-up_type_full-screen-image");
 
 // Экземпляр попапа обновления аватара
-const newAvatarPopup = new PopupWithForm(
-  ".pop-up_type_new-avatar",
-  (inputUrl) => {
-    submitAvatarBtn.textContent = "Сохранение...";
-    const [url] = inputUrl;
-    api
-      .updateAvatar(url)
-      .then((res) => {
-        profile.setUserInfo(res);
-        newAvatarPopup.close();
-        submitAvatarBtn.textContent = "Сохраненить";
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-);
+const newAvatarPopup = new PopupWithForm(".pop-up_type_new-avatar", (inputUrl) => {
+  // submitAvatarBtn.textContent = "Сохранение...";
+  const [url] = inputUrl;
+  api
+    .updateAvatar(url)
+    .then((res) => {
+      profile.setUserInfo(res);
+      newAvatarPopup.close();
+      // submitAvatarBtn.textContent = "Сохраненить";
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 
 // Экземпляр класса Section для добавления карточек
 const cardsArray = new Section(
@@ -214,8 +203,8 @@ addNewImageButton.addEventListener("click", () => {
   addImagePopup.open();
 });
 
-newAvatarPopup.setEventListeners();
+// newAvatarPopup.setEventListeners();
 avatarEditButton.addEventListener("click", () => {
-  newAvatarValidator.resetValidation();
   newAvatarPopup.open();
+  newAvatarValidator.resetValidation();
 });
