@@ -9,6 +9,7 @@ import PopupWithSubmit from "../components/PopupWithSubmit.js";
 import Api from "../components/Api.js";
 import "./index.css";
 
+const cards = document.querySelector(".cards");
 const profilePopup = document.querySelector(".pop-up_type_edit-profile");
 const profileFormElement = profilePopup.querySelector(".pop-up__form");
 const nameInput = document.querySelector(".pop-up__input_type_name");
@@ -21,6 +22,8 @@ const newCardForm = document.querySelector(".pop-up__form_type_new-image");
 const newAvatarForm = document.querySelector(".pop-up__form_type_new-avatar");
 const avatarEditButton = document.querySelector(".profile__cover");
 const submitAvatarBtn = document.querySelector(".pop-up__save-button_type_new-avatar");
+
+const inputArray = document.querySelectorAll(".pop-up__input");
 
 //////////////////////////////////////////////////////////////////////////
 const profileValidator = new FormValidator(validationSet, profileFormElement);
@@ -82,7 +85,14 @@ const addImagePopup = new PopupWithForm(".pop-up_type_new-image", (inputsValue) 
 });
 
 // Экземпляр попапа для увеличения картинки
-const scaleImagePopup = new PopupWithImage(".pop-up_type_full-screen-image");
+const imagePopup = document.querySelector(".pop-up__scale-image");
+const titleImagePopup = document.querySelector(".pop-up__image-description");
+
+const scaleImagePopup = new PopupWithImage(
+  ".pop-up_type_full-screen-image",
+  imagePopup,
+  titleImagePopup
+);
 
 // Экземпляр попапа обновления аватара
 const newAvatarPopup = new PopupWithForm(".pop-up_type_new-avatar", (inputUrl) => {
@@ -107,7 +117,7 @@ const cardsArray = new Section(
       cardsArray.addItem(createCard(cardData));
     },
   },
-  ".cards"
+  cards
 );
 
 // Управление отображением информации о пользователе
@@ -205,6 +215,7 @@ addNewImageButton.addEventListener("click", () => {
 
 // newAvatarPopup.setEventListeners();
 avatarEditButton.addEventListener("click", () => {
+  newAvatarValidator.toggleButtonState();
   newAvatarPopup.open();
   newAvatarValidator.resetValidation();
 });

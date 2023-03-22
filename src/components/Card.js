@@ -73,7 +73,7 @@ export default class Card {
   }
   _getTemplate() {
     const cardElement = document
-      .querySelector(this._templateSelector)
+      .querySelector(this._cardSelector)
       .content.querySelector(this._cardElement)
       .cloneNode(true);
     return cardElement;
@@ -90,8 +90,8 @@ export default class Card {
       this._cardImage.src = errorImage;
       this._cardLink = errorImage;
     };
-    const likeBtn = this._element.querySelector(this.cardLike);
-    const deleteBtn = this._element.querySelector(this.cardTrash);
+    const likeBtn = this._element.querySelector(this._cardLike);
+    const deleteBtn = this._element.querySelector(this._cardTrash);
 
     this._likes = Array.from(this._cardLikes).map((item) => {
       return item._id;
@@ -125,12 +125,6 @@ export default class Card {
     return this._element;
   }
   _setEventListeners() {
-    this._element
-      .querySelector(".card__trash-button")
-      .addEventListener("click", this._deleteCard.bind(this));
-    this._element
-      .querySelector(".card__like-button")
-      .addEventListener("click", this._setCardLike.bind(this));
     this._cardImage.addEventListener("click", () => {
       this._handleCardClick(this._name, this._link);
     });

@@ -5,9 +5,7 @@ export default class FormValidator {
     this._inputList = Array.from(
       this._form.querySelectorAll(validationSet.inputSelector)
     );
-    this._submitButton = this._form.querySelector(
-      validationSet.submitButtonSelector
-    );
+    this._submitButton = this._form.querySelector(validationSet.submitButtonSelector);
   }
 
   enableValidation() {
