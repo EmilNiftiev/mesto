@@ -22,6 +22,8 @@ const newCardForm = document.querySelector(".pop-up__form_type_new-image");
 const newAvatarForm = document.querySelector(".pop-up__form_type_new-avatar");
 const avatarEditButton = document.querySelector(".profile__cover");
 const submitAvatarBtn = document.querySelector(".pop-up__save-button_type_new-avatar");
+const imagePopup = document.querySelector(".pop-up__scale-image");
+const titleImagePopup = document.querySelector(".pop-up__image-description");
 
 const inputArray = document.querySelectorAll(".pop-up__input");
 
@@ -85,14 +87,14 @@ const addImagePopup = new PopupWithForm(".pop-up_type_new-image", (inputsValue) 
 });
 
 // Экземпляр попапа для увеличения картинки
-const imagePopup = document.querySelector(".pop-up__scale-image");
-const titleImagePopup = document.querySelector(".pop-up__image-description");
 
 const scaleImagePopup = new PopupWithImage(
   ".pop-up_type_full-screen-image",
   imagePopup,
   titleImagePopup
 );
+
+// scaleImagePopup.setEventListeners();
 
 // Экземпляр попапа обновления аватара
 const newAvatarPopup = new PopupWithForm(".pop-up_type_new-avatar", (inputUrl) => {
