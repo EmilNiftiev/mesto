@@ -17,13 +17,13 @@
           <!-- <%=require('./images/profile-avatar.jpg')%> -->
         </a>
         <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name"></h1>
           <button
             type="button"
             class="profile__edit-button"
             aria-label="редактировать профиль"
           ></button>
-          <p class="profile__job">Исследователь океана</p>
+          <p class="profile__job"></p>
         </div>
         <button
           type="button"
@@ -62,7 +62,7 @@
             />
             <span class="pop-up__input-error" id="job-error"></span>
             <button
-              class="pop-up__save-button"
+              class="pop-up__save-button pop-up__save-button_type_edit-profile"
               type="submit"
               title="Сохранить результат и выйти"
             >
@@ -80,7 +80,9 @@
       <!-- Попап обновления аватара -->
       <div class="pop-up pop-up_type_new-avatar">
         <div class="pop-up__container">
-          <h3 class="pop-up__title pop-up__title_type_new-avatar">Обновить аватар</h3>
+          <h3 class="pop-up__title pop-up__title_type_new-avatar">
+            Обновить аватар
+          </h3>
           <form
             class="pop-up__form pop-up__form_type_new-avatar"
             name="new-avatar"
@@ -90,7 +92,7 @@
               type="url"
               class="pop-up__input pop-up__input_type_avatar-link"
               placeholder="Ссылка на фотографию"
-              name="avatar-link"
+              name="avatar"
               required
             />
             <span class="pop-up__input-error" id="avatar-error"></span>
@@ -156,7 +158,9 @@
       <!-- Попап подтверждения удаления карточки -->
       <div class="pop-up pop-up_type_delete-confirm">
         <div class="pop-up__container">
-          <h3 class="pop-up__title pop-up__title_type_delete-confirm">Вы уверены?</h3>
+          <h3 class="pop-up__title pop-up__title_type_delete-confirm">
+            Вы уверены?
+          </h3>
           <form
             class="pop-up__form pop-up__form_type_delete-confirm"
             name="from-delete-confirm"

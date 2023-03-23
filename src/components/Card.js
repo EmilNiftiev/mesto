@@ -130,7 +130,7 @@ export default class Card {
     });
   }
 
-  _deleteCard() {
+  removeCard() {
     this._element.closest(this._cardElement).remove();
   }
 }
