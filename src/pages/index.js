@@ -17,12 +17,8 @@ const addNewImageButton = document.querySelector(".profile__add-button");
 const newCardForm = document.querySelector(".pop-up__form_type_new-image");
 const newAvatarSection = document.querySelector(".pop-up_type_new-avatar");
 const avatarEditButton = document.querySelector(".profile__cover");
-const submitAvatarBtn = document.querySelector(
-  ".pop-up__save-button_type_new-avatar"
-);
-const submitProfileBtn = document.querySelector(
-  ".pop-up__save-button_type_edit-profile"
-);
+const submitAvatarBtn = document.querySelector(".pop-up__save-button_type_new-avatar");
+const submitProfileBtn = document.querySelector(".pop-up__save-button_type_edit-profile");
 const imagePopup = document.querySelector(".pop-up__scale-image");
 const titleImagePopup = document.querySelector(".pop-up__image-description");
 
@@ -57,43 +53,37 @@ api
   });
 
 // Экземпляр попапа для проофиля
-const editProfilePopup = new PopupWithForm(
-  ".pop-up_type_edit-profile",
-  (inputsValue) => {
-    submitProfileBtn.textContent = "Сохранение...";
-    const [name, job] = inputsValue;
-    api
-      .setUserInfo(name, job)
-      .then((res) => {
-        profile.setUserInfo(res);
-        editProfilePopup.close();
-        submitProfileBtn.textContent = "Сохранить";
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}!`);
-      });
-  }
-);
+const editProfilePopup = new PopupWithForm(".pop-up_type_edit-profile", (inputsValue) => {
+  submitProfileBtn.textContent = "Сохранение...";
+  const [name, job] = inputsValue;
+  api
+    .setUserInfo(name, job)
+    .then((res) => {
+      profile.setUserInfo(res);
+      editProfilePopup.close();
+      submitProfileBtn.textContent = "Сохранить";
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}!`);
+    });
+});
 
 // Экземпляр попапа для добавления карточки
-const addImagePopup = new PopupWithForm(
-  ".pop-up_type_new-image",
-  (inputsValue) => {
-    const user = {};
-    [user.name, user.link] = inputsValue;
-    api
-      .createUserInfo(user.name, user.link)
-      .then((card) => {
-        const array = [];
-        array.push(card);
-        cardsArray.renderItems(array);
-        addImagePopup.close();
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}!`);
-      });
-  }
-);
+const addImagePopup = new PopupWithForm(".pop-up_type_new-image", (inputsValue) => {
+  const user = {};
+  [user.name, user.link] = inputsValue;
+  api
+    .createUserInfo(user.name, user.link)
+    .then((card) => {
+      const array = [];
+      array.push(card);
+      cardsArray.renderItems(array);
+      addImagePopup.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}!`);
+    });
+});
 
 // Экземпляр попапа для увеличения картинки
 
@@ -104,23 +94,20 @@ const scaleImagePopup = new PopupWithImage(
 );
 
 // Экземпляр попапа обновления аватара
-const newAvatarPopup = new PopupWithForm(
-  ".pop-up_type_new-avatar",
-  (inputUrl) => {
-    submitAvatarBtn.textContent = "Сохранение...";
-    const [url] = inputUrl;
-    api
-      .updateAvatar(url)
-      .then((res) => {
-        profile.setUserInfo(res);
-        newAvatarPopup.close();
-        submitAvatarBtn.textContent = "Сохраненить";
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}!`);
-      });
-  }
-);
+const newAvatarPopup = new PopupWithForm(".pop-up_type_new-avatar", (inputUrl) => {
+  submitAvatarBtn.textContent = "Сохранение...";
+  const [url] = inputUrl;
+  api
+    .updateAvatar(url)
+    .then((res) => {
+      profile.setUserInfo(res);
+      newAvatarPopup.close();
+      submitAvatarBtn.textContent = "Сохранить";
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}!`);
+    });
+});
 
 // Экземпляр класса Section для добавления карточек
 const cardsArray = new Section(
@@ -184,14 +171,12 @@ const createCard = (cardData) => {
       },
       handleDeleteClick: (cardId) => {
         popupDeleteConfirm.open();
-        console.log(cardId);
         popupDeleteConfirm.handleSubmit(() => {
           api
             .deleteCard(cardId)
-            .then((res) => {
-              console.log(res);
-              card.removeCard();
+            .then(() => {
               popupDeleteConfirm.close();
+              card.removeCard();
             })
             .catch((err) => {
               console.log(`Ошибка: ${err}!`);
@@ -232,3 +217,5 @@ avatarEditButton.addEventListener("click", () => {
   newAvatarPopup.open();
   newAvatarValidator.resetValidation();
 });
+
+popupDeleteConfirm.setEventListeners();
