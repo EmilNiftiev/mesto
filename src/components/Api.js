@@ -4,28 +4,25 @@ export default class Api {
     this._headers = options.headers;
   }
 
+  _getResponseData(res) {
+    if (!res.ok) {
+      return Promise.reject(`Что-то пошло не так, ошибка: ${res.status}`);
+    }
+    return res.json();
+  }
+
   getInitialCards() {
     return fetch(this._serverUrl + "/cards", {
       method: "GET",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Что-то пошло не так, ошибка: ${res.status}`);
-    });
+    }).then(this._getResponseData);
   }
 
   getUserInfo() {
     return fetch(this._serverUrl + "/users/me", {
       method: "GET",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Что-то пошло не так, ошибка: ${res.status}`);
-    });
+    }).then(this._getResponseData);
   }
 
   getInitialData() {
@@ -42,12 +39,7 @@ export default class Api {
         name: name,
         about: job,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Что-то пошло не так, ошибка: ${res.status}`);
-    });
+    }).then(this._getResponseData);
   }
 
   // Создание карточки
@@ -60,12 +52,7 @@ export default class Api {
         name: name,
         link: link,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Что-то пошло не так, ошибка: ${res.status}`);
-    });
+    }).then(this._getResponseData);
   }
 
   // Удаление карточки
@@ -74,12 +61,7 @@ export default class Api {
     return fetch(this._serverUrl + "/cards/" + id, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Что-то пошло не так, ошибка: ${res.status}`);
-    });
+    }).then(this._getResponseData);
   }
 
   // Поставить лайк
@@ -88,12 +70,7 @@ export default class Api {
     return fetch(this._serverUrl + "/cards/likes/" + id, {
       method: "PUT",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Что-то пошло не так, ошибка: ${res.status}`);
-    });
+    }).then(this._getResponseData);
   }
 
   // Убрать лайк
@@ -102,12 +79,7 @@ export default class Api {
     return fetch(this._serverUrl + "/cards/likes/" + id, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Что-то пошло не так, ошибка: ${res.status}`);
-    });
+    }).then(this._getResponseData);
   }
 
   // Изменить аватар
@@ -119,11 +91,6 @@ export default class Api {
       body: JSON.stringify({
         avatar: url,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Что-то пошло не так, ошибка: ${res.status}`);
-    });
+    }).then(this._getResponseData);
   }
 }

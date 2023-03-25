@@ -84,6 +84,7 @@ export default class Card {
   }
 
   removeCard() {
-    this._element.closest(this._cardElement).remove();
+    this._element.remove();
+    this._element = null;
   }
 }

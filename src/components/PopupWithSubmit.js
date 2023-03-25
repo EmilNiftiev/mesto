@@ -13,7 +13,7 @@ export default class PopupWithSubmit extends Popup {
       this._handleFormSubmit();
     });
   }
-  handleSubmit(evt) {
+  setSubmitHandler(evt) {
     this._handleFormSubmit = evt;
   }
 }
