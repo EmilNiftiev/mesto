@@ -23,6 +23,9 @@ const submitAvatarBtn = document.querySelector(
 const submitProfileBtn = document.querySelector(
   ".pop-up__save-button_type_edit-profile"
 );
+const submitNewImageBtn = document.querySelector(
+  ".pop-up__save-button_type_new-image"
+);
 const imagePopup = document.querySelector(".pop-up__scale-image");
 const titleImagePopup = document.querySelector(".pop-up__image-description");
 
@@ -81,6 +84,7 @@ const editProfilePopup = new PopupWithForm(
 const addImagePopup = new PopupWithForm(
   ".pop-up_type_new-image",
   (inputsValue) => {
+    submitNewImageBtn.textContent = "Загрузка...";
     const user = {};
     [user.name, user.link] = inputsValue;
     api
@@ -92,6 +96,9 @@ const addImagePopup = new PopupWithForm(
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}!`);
+      })
+      .finally(() => {
+        submitNewImageBtn.textContent = "Создать";
       });
   }
 );
@@ -160,7 +167,7 @@ const createCard = (cardData) => {
         scaleImagePopup.open(name, link);
       },
       handleLikeClick: (cardInfo, likes, user, likeBtn, likesCounter) => {
-        let likesOnCard = likes;
+        const likesOnCard = likes;
         if (likesOnCard.includes(user._id)) {
           api
             .deleteCardLike(cardInfo.cardId)
